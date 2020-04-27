@@ -9,6 +9,8 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ("username", "last_name", "first_name", "email",)
 
-class  ListForm(forms.ModelForm):
-    model = List
-    fields = ("title",)
+class ListForm(forms.ModelForm):
+
+    class Meta:
+        model = List
+        fields = ("title",)

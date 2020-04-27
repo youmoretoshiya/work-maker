@@ -31,6 +31,9 @@
                   </span>
                   <!--ここから追記-->
                   <li class="nav-item">
+                    <a class="nav-link" href="{% url 'app:lists_list' %}">リスト一覧</a>
+                  </li>
+                  <li class="nav-item">
                       <a class="=nav-link" href="{% url 'logout' %}">ログアウト</a>
                   </li>
                   {% else %}

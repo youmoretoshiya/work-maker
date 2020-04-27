@@ -3,10 +3,12 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.views.generic import DetailView, UpdateView, DeleteView
-from .form import UserForm
+from django.views.generic import DetailView, UpdateView, DeleteView, CreateView
+from .form import UserForm, ListForm
 from .mixins import OnlyYouMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from .models import List
 # Create your views here.
 
 
@@ -57,3 +59,13 @@ class UserDeleteView(OnlyYouMixin, DeleteView):
 
     def get_success_url(self):
         return resolve_url('app:users_detail', pk=self.kwargs['pk'])
+
+class ListCreateView(LoginRequiredMixin, CreateView):
+    model = List
+    template_name = "app/Lists/create.html"
+    form_class = ListForm
+    success_url = reverse_lazy("app:home")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

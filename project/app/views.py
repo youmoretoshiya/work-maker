@@ -4,11 +4,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.views.generic import DetailView, UpdateView, DeleteView, CreateView, ListView
-from .form import UserForm, ListForm
+from .form import UserForm, ListForm, CardForm
 from .mixins import OnlyYouMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from .models import List
+from .models import List, Card
 # Create your views here.
 
 
@@ -91,3 +91,35 @@ class ListDetailView(LoginRequiredMixin, DeleteView):
     template_name = "app/lists/delete.html"
     form_class = ListForm
     success_url = reverse_lazy("app:lists_list")
+
+class CardCreateView(LoginRequiredMixin, CreateView):
+    model = Card
+    template_name = "app/cards/create.html"
+    form_class = CardForm
+    success_url = reverse_lazy("app:cards_list")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class CardListView(LoginRequiredMixin, ListView):
+    model = Card
+    template_name = "app/cards/list.html"
+
+class CardDetailView(LoginRequiredMixin, DetailView):
+    model = Card
+    template_name = "app/cards/detail.html"
+
+class CardUpdateView(LoginRequiredMixin, UpdateView):
+    model = Card
+    template_name = "app/cards/update.html"
+    form_class = CardForm
+
+    def get_success_url(self):
+        return resolve_url('app:cards_detail', pk=self.kwargs['pk'])
+
+class CardDeleteView(LoginRequiredMixin, DeleteView):
+    model = Card
+    template_name = "app/cards/delete.html"
+    form_class = CardForm
+    success_url = reverse_lazy("app:cards_list")

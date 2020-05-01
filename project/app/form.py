@@ -5,9 +5,9 @@ from .models import List, Card
 
 class UserForm(forms.ModelForm):
 
-    def __int__(self, *args, **kwargs):
-        super(UserForm, self).__int__(*args, **kwargs)
-        for field_name , field in self.fields.items():
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
     class Meta:
@@ -16,9 +16,9 @@ class UserForm(forms.ModelForm):
 
 class ListForm(forms.ModelForm):
 
-    def __int__(self, *args, **kwargs):
-        super(ListForm, self).__int__(*args, **kwargs)
-        for field_name , field in self.fields.items():
+    def __init__(self, *args, **kwargs):
+        super(ListForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
     class Meta:
@@ -27,9 +27,9 @@ class ListForm(forms.ModelForm):
 
 class CardForm(forms.ModelForm):
 
-    def __int__(self, *args, **kwargs):
-        super(CardForm, self).__int__(*args, **kwargs)
-        for field_name , field in self.fields.items():
+    def __init__(self, *args, **kwargs):
+        super(CardForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
     class Meta:
@@ -38,9 +38,9 @@ class CardForm(forms.ModelForm):
 
 class CardCreateFromHomeForm(forms.ModelForm):
 
-    def __int__(self, *args, **kwargs):
-        super(CardCreateFromHomeForm, self).__int__(*args, **kwargs)
-        for field_name , field in self.fields.items():
+    def __init__(self, *args, **kwargs):
+        super(CardCreateFromHomeForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
     class Meta:

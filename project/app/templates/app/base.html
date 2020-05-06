@@ -15,7 +15,8 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-dark bg-dark fixed-top">
+    <!--navigationbarの色を変更：白抜き文字に背景色を青に -->
+    <nav class="navbar navbar-dark bg-primary fixed-top">
       {% if request.user.is_authenticated %}
       <a class="navbar-brand" href="{% url 'app:home' %}">Work-Maker</a>
       {% else %}
